@@ -101,3 +101,30 @@ jobs:
       - name: Deploy static blocklist
         id: deployment
         uses: actions/deploy-pages@v4
+
+  publish-apk-release:
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Extract APK from deployment history
+        run: |
+          git show 1ff6d75c783f6e30ea7894a0f8b839396db1d274:public/client-updates/android/0x-VPN-v1.1.apk > 0x-VPN-v1.1.apk
+          echo "b9d167f852fcf3be3b61e96b0e29ad55328c1efcc137d48965fbfaf844215ae0  0x-VPN-v1.1.apk" | sha256sum --check -
+      - name: Publish GitHub Release asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: android-v1.1.0-preview
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" 0x-VPN-v1.1.apk --clobber
+          else
+            gh release create "$TAG" 0x-VPN-v1.1.apk \
+              --title "0x VPN Android 1.1.0 Preview" \
+              --notes "Direct APK build for 0x VPN Android 1.1.0-preview." \
+              --latest
+          fi
