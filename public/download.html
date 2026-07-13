@@ -27,17 +27,17 @@
     <main class="legal-page">
       <p class="eyebrow">0x VPN Android</p>
       <h1>Download</h1>
-      <p class="legal-meta">Current direct APK build: 1.1.1-preview, version code 12.</p>
+      <p class="legal-meta">Current direct APK build: 1.1.2-preview, version code 13.</p>
 
       <div class="notice">
-        0x VPN is using a direct APK distribution path. APK installs and updates still require Android user approval
-        and matching package signatures.
+        0x VPN version 12 and later checks for signed updates in-app and downloads them automatically while the VPN is
+        disconnected. Android may still request installer confirmation, and matching package signatures are mandatory.
       </div>
 
       <h2>Android direct APK</h2>
       <p>
         The current APK is hosted outside the GitHub Pages artifact so the website can stay small and reliable.
-        Android will require install approval, and package signature checks still apply during updates.
+        This link is the manual fallback; users already on version 12 or later do not need to redownload from this page.
       </p>
       <div class="simple-list">
         <a href="https://github.com/0x-vpn/adblocker/releases/latest/download/0x-VPN-v1.1.apk">Download 0x VPN Android APK</a>
@@ -48,14 +48,14 @@
       <p>
         SHA-256 for the published APK:
       </p>
-      <p><code>a48da19103e8e16e0c047721ecc493a310ea567eba2e8d2f6790a7b30d76e48f</code></p>
+      <p><code>ff40380c64098e4e099d412761dac6d905949d2e5bdb45ee8b144899a555fd00</code></p>
 
       <h2>Release note</h2>
       <p>
-        Version 1.1.1 adds trusted-device profile protection, secure App Tunnel server switching,
-        connection-timer and ping fixes, the connected location in Android's system VPN notification,
-        and automatic signed update handling for version 12 and later. Version-code-11 users need this
-        one manual matching-signature bridge install. VPN-minute balances are unchanged.
+        Version 1.1.2 reduces the signed APK download from about 101 MB to about 13.3 MB by removing native debug
+        symbols and compressing the OpenVPN libraries. Automatic signed updates, trusted-device profile protection,
+        and fail-closed App Tunnel behavior are unchanged. Version-code-11 users still need one manual
+        matching-signature bridge install to version 12 or later. VPN-minute balances are unchanged.
       </p>
     </main>
 
